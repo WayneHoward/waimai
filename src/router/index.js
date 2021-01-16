@@ -4,8 +4,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  {path: '/', redirect: '/home'},
   {
-    path: '/',
+    path: '/home',
     component: () => import('../views/Home.vue')
   },
   {
@@ -23,7 +24,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  linkActiveClass : "light"
 })
 
 export default router
