@@ -10,7 +10,7 @@
   <div class="search">
     <Header title="搜索"></Header>
     <div class="top">
-      <input type="text" placeholder="请输入商家名称" value="test" />
+      <input type="text" placeholder="请输入商家名称" v-model="shop"/>
       <button @click="sub()">提交</button>
     </div>
     <ul>
@@ -35,35 +35,35 @@ export default {
   props: {},
   data() {
     return {
+      shop: '',
       list: [],
     };
   },
   mounted () {
-        this.axios.get("http://192.168.31.110:3000/search_shops?keyword=test&geohash=40.10038,116.36867", {
-            // keyword: 'test',
-            // geohash:'40.10038,116.36867'         
+        // this.axios.get("http://192.168.31.110:3000/search_shops?keyword=test&geohash=40.10038,116.36867", {
+        //     // keyword: 'test',
+        //     // geohash:'40.10038,116.36867'         
+        // })
+        // .then((res) => {
+        //   console.log(res);
+        //   this.list = res.data.data;
+        //   console.log(this.list)
+        // });
+  },
+  methods: {
+    sub() {
+        this.axios.get(`http://192.168.31.110:3000/search_shops?keyword=${this.shop}&geohash=40.10038,116.36867`, {
+          // geohash: '40.10038,116.36867',
+          // keyword: this.shop,
+         
         })
         .then((res) => {
           console.log(res);
           this.list = res.data.data;
           console.log(this.list)
         });
-      
+    },
   },
-//   methods: {
-//     sub() {
-//         this.axios.get("http://192.168.31.110:3000/search_shops?keyword=test&geohash=40.10038,116.36867", {
-//             // keyword: 'test',
-//             // geohash: '40.10038,116.36867'
-         
-//         })
-//         .then((res) => {
-//           console.log(res);
-//           this.list = res.data.data;
-//           console.log(this.list)
-//         });
-//     },
-//   },
   components: {
     Header,
     Footer,
@@ -86,6 +86,7 @@ export default {
     font-size: 1.2rem;
     font-weight: bold;
     box-sizing: border-box;
+    border-radius: 0.4rem;
   }
   button {
     width: 6.5rem;
@@ -94,6 +95,7 @@ export default {
     color: #ffffff;
     font-size: 1.6rem;
     margin-left: 1rem;
+    border-radius: 0.4rem;
   }
 }
 ul{

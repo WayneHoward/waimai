@@ -61,11 +61,13 @@ export default {
             justify-content: space-around;
             align-items: center;
             li{
-                padding-top: 0.2rem;
+                padding-top: 0.4rem;
                 box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                align-items: center;
+                text-align: center;
                 a{
                     span{
                         font-size: 2rem;
@@ -77,10 +79,10 @@ export default {
                 }
                 .light{
                     span{
-                        color: rgb(92, 162, 148);
+                        color: #02a774;
                     }
                     p{
-                        color: rgb(92, 162, 148);
+                        color: #02a774;
                     }
                 }
             }
