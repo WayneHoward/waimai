@@ -1,6 +1,6 @@
 <template>
-    <div id="app">
-      <router-view></router-view>
+    <div class="search">
+        <h1>搜索</h1>
     </div>
 </template>
 
