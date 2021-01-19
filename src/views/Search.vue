@@ -55,7 +55,6 @@ export default {
         this.axios.get(`http://192.168.31.110:3000/search_shops?keyword=${this.shop}&geohash=40.10038,116.36867`, {
           // geohash: '40.10038,116.36867',
           // keyword: this.shop,
-         
         })
         .then((res) => {
           console.log(res);
