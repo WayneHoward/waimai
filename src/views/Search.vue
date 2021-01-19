@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-01-16 11:33:57
- * @LastEditTime: 2021-01-16 17:21:05
+ * @LastEditTime: 2021-01-19 11:32:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \waimai\waimai\src\views\Search.vue
@@ -42,15 +42,6 @@ export default {
     };
   },
   mounted () {
-        // this.axios.get("http://192.168.31.110:3000/search_shops?keyword=test&geohash=40.10038,116.36867", {
-        //     // keyword: 'test',
-        //     // geohash:'40.10038,116.36867'         
-        // })
-        // .then((res) => {
-        //   console.log(res);
-        //   this.list = res.data.data;
-        //   console.log(this.list)
-        // });
   },
   methods: {
     sub() {
