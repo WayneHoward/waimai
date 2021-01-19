@@ -158,15 +158,16 @@ export default {
     //   left: 0;
     //   width: 100%;
     // }
+      padding-bottom: 1rem;
+      padding-top: 1rem;
     li {
       width: 25%;
       display: flex;
-      // margin-bottom: 2rem;
       flex-direction: column;
       align-items: center;
       img{
-        width:7rem;
-        height:7rem;
+        width:5rem;
+        height:5rem;
       }
       span{
         display: block;

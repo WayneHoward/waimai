@@ -36,6 +36,7 @@ export default {
         padding: 0rem 1rem;
         text-align: center;
         position: fixed;
+        z-index: 99;
         top: 0;
         .iconfont{
             font-size: 2rem;

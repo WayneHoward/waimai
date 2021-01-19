@@ -2,7 +2,7 @@
     <div class="message">
         <div class="code">
             <div class="get">
-                <input type="text" placeholder="手机号" @input="getChange()">
+                <input type="text" placeholder="手机号" @input="getChange()" v-model="phone">
                 <span class="s0" v-if="isShow0">获取验证码</span>
                 <span class="s1" v-if="isShow1" @click="getCode()">获取验证码</span>
                 <span class="s2" v-if="isShow2">已发送（{{time}}s）</span>
