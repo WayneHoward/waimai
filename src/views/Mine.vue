@@ -14,11 +14,15 @@
                 <img src="./../assets/images/user_normal.jpg" alt="">
             </div>
             <div class="login">
-                <p>
-                    <router-link to="/login">登录</router-link>/
-                    <router-link to="">注册</router-link>
-                </p>
-                <p><span class="iconfont icon-shouji1"></span>暂无绑定手机号</p>
+                <div v-if="unLogin">
+                    <p>
+                        <router-link to="/login">登录/注册</router-link>
+                    </p>
+                    <p><span class="iconfont icon-shouji1"></span>暂无绑定手机号</p>
+                </div>
+                <div class="isLogin" v-if="isLogin">
+                    <p><span class="iconfont icon-shouji1"></span>{{phone}}</p>
+                </div>
             </div>
             <div class="next">
                 <span class="iconfont icon-qianjin"></span>
@@ -91,8 +95,21 @@ export default {
     },
     data() {
         return {
-
+            phone: "",
+            unLogin: true,
+            isLogin: true,
         };
+    },
+    mounted () {
+        //检测是否登录
+        if(localStorage.getItem('phone') != null || localStorage.getItem('phone') != undefined){
+            this.unLogin = false;
+            this.isLogin = true;
+            this.phone = localStorage.getItem('phone');
+        }else{
+            this.unLogin = true;
+            this.isLogin = false;
+        }  
     },
     methods: {
 
@@ -131,8 +148,24 @@ export default {
                 font-weight: bold;
             }
             p{
-                margin-top: 1rem;
+                margin-top: 0.5rem;
+                font-size: 1.2rem;
                 color: #ffffff;
+                .icon-shouji1{
+                    font-size: 1.4rem;
+                }
+                a{
+                    font-size: 1.8rem;
+                }
+            }
+            .isLogin{
+                p{
+                    margin-top: 1.5rem;
+                    font-size: 1.4rem;
+                    .icon-shouji1{
+                        font-size: 1.4rem;
+                    }
+                }
             }
         }
         .next{
@@ -140,7 +173,7 @@ export default {
             margin-top: 2rem;
             .icon-qianjin{
                 color: #ffffff;
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
         }
     }

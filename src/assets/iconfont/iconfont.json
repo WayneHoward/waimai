@@ -6,25 +6,32 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "18368044",
+      "name": "开关 关",
+      "font_class": "kaiguanguan",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "18368045",
+      "name": "开关 开",
+      "font_class": "kaiguankai",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "1232426",
+      "name": "通讯录",
+      "font_class": "tongxunlu",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
       "icon_id": "4867087",
       "name": "前进",
       "font_class": "qianjin",
       "unicode": "e653",
       "unicode_decimal": 58963
-    },
-    {
-      "icon_id": "4925462",
-      "name": "开关-开",
-      "font_class": "kaiguan-kai",
-      "unicode": "e608",
-      "unicode_decimal": 58888
-    },
-    {
-      "icon_id": "4925963",
-      "name": "开关-关",
-      "font_class": "kaiguan-guan",
-      "unicode": "e60f",
-      "unicode_decimal": 58895
     },
     {
       "icon_id": "953311",

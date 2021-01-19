@@ -2,14 +2,14 @@
     <div class="message">
         <div class="code">
             <div class="get">
-                <input type="text" placeholder="手机号" @input="getChange()" v-model="phone">
+                <input type="number" placeholder="手机号" @input="getChange()" v-model="phone" :readonly="isReadonly">
                 <span class="s0" v-if="isShow0">获取验证码</span>
                 <span class="s1" v-if="isShow1" @click="getCode()">获取验证码</span>
                 <span class="s2" v-if="isShow2">已发送（{{time}}s）</span>
             </div>
-            <input type="text" placeholder="验证码">
+            <input type="text" placeholder="验证码" v-model="code">
             <p>温馨提示：未注册蜂鸟外卖账号的手机号，登录时 将自动注册，且代表已同意<span>《用户服务协议》</span></p>
-            <button>登录</button>
+            <button @click="login()">登录</button>
         </div>
     </div>
 </template>
@@ -25,7 +25,9 @@ export default {
             isShow0: true,
             isShow1: false,
             isShow2: false,
+            isReadonly: false,
             phone: "",
+            code: "",
         };
     },
     mounted () {
@@ -34,17 +36,41 @@ export default {
         getCode(){
             this.isShow1 = false;
             this.isShow2 = true;
-            let timer1 = setInterval(() => {
-                this.time --;
-            }, 1000);
-            let timer2 = setTimeout(() => {
-                this.isShow1 = true;
-                this.isShow2 = false;
-                this.time = 15;
-                clearInterval(timer1)
-            }, 15000);
+            this.isReadonly = true;
+            this.axios.get('http://192.168.31.110:3000/sendcode',{
+                phone: this.phone
+            }).then((res) => {
+                console.log(res);
+                let timer1 = setInterval(() => {
+                    this.time --;
+                }, 1000);
+                let timer2 = setTimeout(() => {
+                    this.isShow1 = true;
+                    this.isShow2 = false;
+                    this.time = 15;
+                    clearInterval(timer1);
+                    this.isReadonly = false;
+                }, 15000);
+            });
         },
         getChange(){
+            if(this.phone.length == 11){
+                this.isShow0 = false;
+                this.isShow1 = true;
+            }else{
+                this.isShow0 = true;
+                this.isShow1 = false;
+            }
+        },
+        login(){
+            this.axios.post('http://192.168.31.110:3000/login_sms',{
+                phone: this.phone,
+                colde: this.code,
+            }).then((res) => {
+                console.log(res.data.phone);
+                localStorage.setItem('phone', res.data.phone);
+                this.$router.push('/');
+            });
         }
     },
     components: {

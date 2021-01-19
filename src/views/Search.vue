@@ -50,8 +50,8 @@ export default {
           // keyword: this.shop,
         })
         .then((res) => {
-          console.log(res);
-          this.list = res.data.data;
+          // console.log(res);
+          this.list = res.data;
           console.log(this.list)
         });
         this.isshow = false;

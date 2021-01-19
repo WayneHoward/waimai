@@ -5,7 +5,8 @@
         <span class="iconfont icon-search" @click="toSearch()"></span>
       </template>
       <template #icon-right>
-        <p @click="toRorL">登录｜注册</p>
+        <p @click="toRorL" v-if="toLogin">登录｜注册</p>
+        <span class="iconfont icon-tongxunlu" v-if="isLogin" @click="toMine()"></span>
       </template>
     </Header>
     
@@ -89,6 +90,8 @@ export default {
         // Some Swiper option/callback...
         // autoplay: true,
       },
+      toLogin: true,
+      isLogin: false,
     };
   },
   methods: {
@@ -98,6 +101,9 @@ export default {
     toRorL() {
       this.$router.push("/login");
     },
+    toMine(){
+      this.$router.push('/mine');
+    }
   },
 
   components: {
@@ -105,6 +111,14 @@ export default {
     Footer,
   },
   mounted() {
+    //检测是否登录
+    if(localStorage.getItem('phone') != null || localStorage.getItem('phone') != undefined){
+      this.toLogin = false;
+      this.isLogin = true;
+    }else{
+      this.toLogin = true;
+      this.isLogin = false;
+    }
     //位置
     axios
       .get("http://192.168.31.110:3000/position/40.10038,116.36867")
@@ -148,6 +162,15 @@ export default {
 <style scoped lang="less">
 .home {
   width: 100%;
+  .header{
+    .icon-tongxunlu{
+      display: inline-block;
+      width: 5rem;
+      position: absolute;
+      left: 32.5rem;
+      font-size: 2.5rem;
+    }
+  }
   .foodCategory {
     width: 100%;
     display: flex;
