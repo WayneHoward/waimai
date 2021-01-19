@@ -10,13 +10,14 @@
   <div class="search">
     <Header title="搜索"></Header>
     <div class="top">
-      <input type="text" @focus="isshow = true" placeholder="请输入商家名称" v-model="shop"/>
+      <input type="text" @focus="isshow = true,error=false" placeholder="请输入商家名称" v-model="shop" />
       <img class="clear" v-show="isshow" @click="clear_shop()" src="./../assets/images/clear.png" alt="">
       <button @click="sub()">提交</button>
     </div>
+    <h1 v-show="error">输入查询词有误</h1>
     <ul>
         <li v-for="item in list" :key=item.id>
-            <img :src="item.imaage_path" alt="">
+            <img :src="'https://elm.cangdu.org/img/'+item.image_path" alt="">
             <div class="right">
                 <p>{{ item.name}}</p>
                 <p>月售 {{item.recent_order_num}} 单</p>
@@ -39,6 +40,7 @@ export default {
       shop: '',
       list: [],
       isshow:false,
+      error:false,
     };
   },
   mounted () {
@@ -50,12 +52,16 @@ export default {
           // keyword: this.shop,
         })
         .then((res) => {
-          console.log(res);
-          this.list = res.data.data;
+          console.log(res.data);
+          if(res.data.message){
+            this.error=true;
+          }else{
+            this.error=false;
+            this.list = res.data;
+          }
           console.log(this.list)
         });
         this.isshow = false;
-        
     },
     clear_shop() {
         this.shop='';
@@ -102,6 +108,11 @@ export default {
       right: 7.5rem;
       top: 6.5rem;
   }
+}
+h1{
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 3rem;
 }
 ul{
     width: 100%;
