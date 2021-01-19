@@ -136,6 +136,7 @@ export default {
           "http://192.168.31.110:3000/shops?latitude=40.10038&longitude=116.36867"
       ).then((res) => {
           this.shopList = res.data;
+          console.log(res)
           res.data.forEach((item) => {
             let result = [];
             let score = Math.floor(item.rating * 2) / 2;
