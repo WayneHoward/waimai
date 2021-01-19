@@ -21,6 +21,21 @@ const routes = [
     path: '/mine',
     component: () => import('../views/Mine.vue')
   },
+  {
+    path: '/login',
+    component: () => import('../views/Login.vue'),
+    children: [
+      {path: '/', redirect: 'message'},
+      {
+        path: 'message',
+        component: () => import('../components/login/Message.vue')
+      },
+      {
+        path: 'pass',
+        component: () => import('../components/login/Pass.vue')
+      },
+    ]
+  },
 ]
 
 const router = new VueRouter({
