@@ -164,7 +164,7 @@ export default {
         height:5rem;
       }
       span{
-        font-size: .14rem;
+        font-size: 1.2rem;
         display: block;
         margin: 1rem;
       }
