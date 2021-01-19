@@ -25,6 +25,7 @@ export default {
             isShow0: true,
             isShow1: false,
             isShow2: false,
+            phone: "",
         };
     },
     mounted () {
@@ -44,7 +45,6 @@ export default {
             }, 15000);
         },
         getChange(){
-            console.log(this);
         }
     },
     components: {
