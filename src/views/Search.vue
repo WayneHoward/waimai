@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-01-16 11:33:57
- * @LastEditTime: 2021-01-16 16:09:16
+ * @LastEditTime: 2021-01-16 17:21:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \waimai\waimai\src\views\Search.vue
@@ -10,7 +10,8 @@
   <div class="search">
     <Header title="搜索"></Header>
     <div class="top">
-      <input type="text" placeholder="请输入商家名称" v-model="shop"/>
+      <input type="text" @focus="isshow = true" placeholder="请输入商家名称" v-model="shop"/>
+      <img class="clear" v-show="isshow" @click="clear_shop()" src="./../assets/images/clear.png" alt="">
       <button @click="sub()">提交</button>
     </div>
     <ul>
@@ -37,6 +38,7 @@ export default {
     return {
       shop: '',
       list: [],
+      isshow:false,
     };
   },
   mounted () {
@@ -61,7 +63,12 @@ export default {
           this.list = res.data.data;
           console.log(this.list)
         });
+        this.isshow = false;
+        
     },
+    clear_shop() {
+        this.shop='';
+    }
   },
   components: {
     Header,
@@ -86,6 +93,7 @@ export default {
     font-weight: bold;
     box-sizing: border-box;
     border-radius: 0.4rem;
+    position: relative;
   }
   button {
     width: 6.5rem;
@@ -95,6 +103,13 @@ export default {
     font-size: 1.6rem;
     margin-left: 1rem;
     border-radius: 0.4rem;
+  }
+  .clear{
+      width: 2rem;
+      height: 2rem;
+      position: absolute;
+      right: 7.5rem;
+      top: 6.5rem;
   }
 }
 ul{
