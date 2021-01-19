@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <slot name="icon-left"></slot>
-        <span>{{title}}</span>
+        <span class="title">{{title}}</span>
         <slot name="icon-right"></slot>
     </div>
 </template>
@@ -55,6 +55,10 @@ export default {
             top: 0;
             color: white;
             font-size: 1.3rem;
+        }
+        .title{
+            display: inline-block;
+            width:15rem;
         }
     }
 </style>
