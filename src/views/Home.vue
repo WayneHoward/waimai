@@ -26,7 +26,7 @@
             </li>
             </ul>
         </swiper-slide>
-        <div class="swiper-pagination" slot="pagination" style="bottom:0px"></div>
+        <div class="swiper-pagination" slot="pagination" style="bottom:.5rem"></div>
       </swiper>
     <ul class="shopList">
       <li class="near">附近商家</li>
@@ -152,14 +152,8 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    padding: 2rem 0;
     border-bottom: 1px solid #ccc;
-    // .swiper-container-horizontal > .swiper-pagination-bullets {
-    //   bottom: 0px;
-    //   left: 0;
-    //   width: 100%;
-    // }
-      padding-bottom: 1rem;
-      padding-top: 1rem;
     li {
       width: 25%;
       display: flex;
@@ -170,6 +164,7 @@ export default {
         height:5rem;
       }
       span{
+        font-size: .14rem;
         display: block;
         margin: 1rem;
       }
