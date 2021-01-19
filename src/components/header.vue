@@ -32,7 +32,7 @@ export default {
         width: 100%;
         height: 4.5rem;
         line-height: 4.5rem;
-        background: rgb(92, 162, 148);
+        background: #02a774;
         padding: 0rem 1rem;
         text-align: center;
         position: fixed;
