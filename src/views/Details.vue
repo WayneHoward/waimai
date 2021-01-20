@@ -88,6 +88,7 @@ export default {
 
 <style scoped lang="less">
     .details{
+        padding-top: 17rem;
         .bgImg{
             width: 100%;
             height: 5rem;
@@ -110,14 +111,15 @@ export default {
         }
         .info{
             width: 100%;
-            height: 13rem;
+            height: 16.5rem;
             background: white;
             border-bottom: 1px solid rgb(217, 217, 217);
-            position: relative;
+            position: fixed;
+            top: 5rem;
             .profilePhoto{
                 display: block;
                 position: absolute;
-                top: -7rem;
+                top: -4rem;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 7rem;
