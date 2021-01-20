@@ -36,6 +36,25 @@ const routes = [
       },
     ]
   },
+  {
+    path: '/details/:id',
+    component: () => import('./../views/Details.vue'),
+    children: [
+      {path: '/', redirect: 'menu'},
+      {
+        path: 'menu',
+        component: () => import('../components/details/Menu.vue')
+      },
+      {
+        path: 'mark',
+        component: () => import('../components/details/Mark.vue')
+      },
+      {
+        path: 'shop',
+        component: () => import('../components/details/Shop.vue')
+      },
+    ]
+  },
 ]
 
 const router = new VueRouter({

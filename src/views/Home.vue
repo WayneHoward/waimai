@@ -31,7 +31,7 @@
       </swiper>
     <ul class="shopList">
       <li class="near">附近商家</li>
-      <li v-for="(item, index) in shopList" :key="index">
+      <li v-for="(item, index) in shopList" :key="index" @click="toDetails(index)">
         <div class="left">
           <img :src="item.image_path" alt="" />
         </div>
@@ -71,15 +71,6 @@ import Footer from "./../components/footer.vue";
 import axios from "axios";
 import Star from "./../components/star.vue";
 
-// 星星总长度
-const LENGTH = 5;
-
-// 星星的状态
-// const CLS_ON = "on"; // 全星
-// const CLS_HALF = "half"; // 半星
-// const CLS_OFF = "off"; // 剩余未点亮的星星
-
-
 export default {
   props: {},
   data() {
@@ -109,6 +100,9 @@ export default {
     },
     toMine(){
       this.$router.push('/mine');
+    },
+    toDetails(index){
+      this.$router.push('/details/' + (++index))
     }
   },
 
@@ -279,17 +273,6 @@ export default {
       background-repeat: no-repeat;
       background-size: 10px 10px;
     }
-
-    /* 三种图片类型*/
-    // .on {
-    //   background-image: url("../assets/image/star_active.png");
-    // }
-    // .half {
-    //   background-image: url("../assets/image/half_star.png");
-    // }
-    // .off {
-    //   background-image: url("../assets/image/star_normal.png");
-    // }
   }
 }
 </style>

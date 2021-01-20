@@ -64,7 +64,8 @@ export default {
                 .light{
                     font-weight: bold;
                     color: #02a774;
-                    text-decoration: underline;
+                    border-bottom: 4px solid #02a774;
+                    padding-bottom: 0.3rem;
                 }
             }
         }
