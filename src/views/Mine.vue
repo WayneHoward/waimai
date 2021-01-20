@@ -82,6 +82,7 @@
                 </li>   
             </ul>
         </div>
+        <button class="logout" v-if="isLogin" @click="logout()">退出登录</button>
         <Footer></Footer>
     </div>
 </template>
@@ -101,6 +102,8 @@ export default {
         };
     },
     mounted () {
+        //将url路径存入storage······
+        localStorage.setItem("path", window.location.href.replace(window.location.host, "").replace(window.location.protocol, "").slice(4)); 
         //检测是否登录
         if(localStorage.getItem('phone') != null || localStorage.getItem('phone') != undefined){
             this.unLogin = false;
@@ -112,7 +115,23 @@ export default {
         }  
     },
     methods: {
-
+        logout(){
+            //询问框
+            layer.open({
+                title: [
+                    '提示',
+                    'font-size: 1.4rem; color: black'
+                ]
+                ,style: 'font-size: 1.4rem; color: #bababa'
+                ,content: '确认退出吗？'
+                ,btn: ['确定', '取消']
+                ,yes: function(index){
+                    localStorage.removeItem('phone');
+                    window.location.reload();
+                    layer.close(index);
+                }
+            });
+        }
     },
     components: {
         Header,
@@ -239,6 +258,16 @@ export default {
                 }
             }
         }
+    }
+    .logout{
+        margin-top: 1rem;
+        text-align: center;
+        width: 100%;
+        height: 4rem;
+        color: white;
+        font-size: 1.3rem;
+        background: #ef4f4f;
+        border-radius: 0.5rem;
     }
 }
 </style>

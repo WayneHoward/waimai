@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header :title="address">
+    <Header title="昌平区北七家修正大厦(北清路北)">
       <template #icon-left>
         <span class="iconfont icon-search" @click="toSearch()"></span>
       </template>
@@ -111,6 +111,8 @@ export default {
     Footer,
   },
   mounted() {
+    //将url路径存入storage
+    localStorage.setItem("path", window.location.href.replace(window.location.host, "").replace(window.location.protocol, "").slice(4)); 
     //检测是否登录
     if(localStorage.getItem('phone') != null || localStorage.getItem('phone') != undefined){
       this.toLogin = false;
@@ -136,7 +138,7 @@ export default {
           "http://192.168.31.110:3000/shops?latitude=40.10038&longitude=116.36867"
       ).then((res) => {
           this.shopList = res.data;
-          console.log(res)
+          // console.log(res)
           res.data.forEach((item) => {
             let result = [];
             let score = Math.floor(item.rating * 2) / 2;

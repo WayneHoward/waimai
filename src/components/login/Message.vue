@@ -21,6 +21,7 @@ export default {
     },
     data() {
         return {
+            urlPath: "",
             time: 15,
             isShow0: true,
             isShow1: false,
@@ -31,6 +32,7 @@ export default {
         };
     },
     mounted () {
+        this.urlPath = localStorage.getItem('path');
     },
     methods: {
         getCode(){
@@ -69,7 +71,7 @@ export default {
             }).then((res) => {
                 console.log(res.data.phone);
                 localStorage.setItem('phone', res.data.phone);
-                this.$router.push('/');
+                this.$router.push(this.urlPath);
             });
         }
     },

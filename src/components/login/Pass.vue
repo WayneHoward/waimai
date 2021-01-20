@@ -1,12 +1,15 @@
 <template>
     <div class="pass">
-        <input type="text" placeholder="手机/邮箱/用户名">
+        <input type="text" placeholder="手机/邮箱/用户名" v-model="name">
         <div class="pass-input">
-            <input :type="trueOrFalse" placeholder="密码">
+            <input :type="trueOrFalse" placeholder="密码" v-model="pwd">
             <span class="iconfont icon-kaiguanguan" v-if="close" @click="closeButton()"></span>
             <span class="iconfont icon-kaiguankai" v-if="open" @click="openButton()"></span>
         </div>
-        <input type="text" placeholder="验证码" readonly>
+        <div class="code-input">
+            <input type="text" placeholder="验证码" v-model="captcha">
+            <p><embed :src="code" type="text/xml"></p>
+        </div>
         <button @click="login()">登录</button>
     </div>
 </template>
@@ -20,15 +23,20 @@ export default {
         return {
             close: true,
             open: false,
-            trueOrFalse: 'password'
+            trueOrFalse: 'password',
+            code: "",
+            name: "",
+            pwd: "",
+            captcha: "",
         };
     },
     mounted () {
-        this.axios.get('http://192.168.31.110:3000/captcha',{
-
-        }).then((res) => {
-            console.log(res);
-        })
+        this.axios.get('http://192.168.31.110:3000/captcha',{}).then((res) => {
+            let blob = new Blob([res], {
+                type: 'text/xml'
+            });
+            this.code = URL.createObjectURL(blob);
+        });
     },
     methods: {
         closeButton(){
@@ -42,6 +50,13 @@ export default {
             this.trueOrFalse = 'password';
         },
         login(){
+            // this.axios.post('http://192.168.31.110:3000/login_pwd', {
+            //     name: this.name,
+            //     pwd: this.pwd,
+            //     captcha: this.captcha,
+            // }).then((res) => {
+            //     console.log(res);
+            // });
             
         }
     },
@@ -82,6 +97,16 @@ export default {
             }
             .icon-kaiguankai{
                 color: rgb(69, 139, 117);
+            }
+        }
+        .code-input{
+            position: relative;
+            overflow: hidden;
+            p{
+                position: absolute;
+                right: -6.5rem;
+                top: 4.7rem;
+                transform: scale(1.7);
             }
         }
         button{

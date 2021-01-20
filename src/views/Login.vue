@@ -13,16 +13,19 @@
 <script>
 export default {
     props: {
-
+        
     },
     data() {
         return {
-
+            urlPath: "",
         };
+    },
+    mounted () {
+        this.urlPath = localStorage.getItem('path');
     },
     methods: {
         goBack(){
-            this.$router.push('/');
+            this.$router.push(this.urlPath);
         }
     },
     components: {

@@ -17,6 +17,9 @@ Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
+// layer
+import './assets/js/layer.mobile-v2.0/layer_mobile/layer'
+import './assets/js/layer.mobile-v2.0/layer_mobile/need/layer.css'
 
 Vue.config.productionTip = false
 // 添加请求拦截器
