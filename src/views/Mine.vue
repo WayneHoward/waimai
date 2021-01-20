@@ -83,6 +83,8 @@
             </ul>
         </div>
         <button class="logout" v-if="isLogin" @click="logout()">退出登录</button>
+        
+        
         <Footer></Footer>
     </div>
 </template>
@@ -249,8 +251,20 @@ export default {
                     float: left;
                     span{
                         position: absolute;
-                        left: -2rem;
-                        font-size: 1.6rem;
+                        left: -2.5rem;
+                        font-size: 2rem;
+                    }
+                    .icon-dingdan{
+                        color: rgb(63, 152, 119);
+                    }
+                    .icon-tubiao309{
+                        color: #ff5f3e;
+                    }
+                    .icon-jifen{
+                        color: #ff9a02;
+                    }
+                    .icon-chengshi{
+                        color: #02a774;
                     }
                 }
                 .right{

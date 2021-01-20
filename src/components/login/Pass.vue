@@ -21,6 +21,7 @@ export default {
     },
     data() {
         return {
+            urlPath: "",
             close: true,
             open: false,
             trueOrFalse: 'password',
@@ -31,6 +32,7 @@ export default {
         };
     },
     mounted () {
+        this.urlPath = localStorage.getItem('path');
         this.axios.get('http://192.168.31.110:3000/captcha',{}).then((res) => {
             let blob = new Blob([res], {
                 type: 'text/xml'
@@ -57,7 +59,8 @@ export default {
             // }).then((res) => {
             //     console.log(res);
             // });
-            
+            localStorage.setItem('phone', this.name);
+            this.$router.push(this.urlPath);
         }
     },
     components: {

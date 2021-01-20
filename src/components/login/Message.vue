@@ -43,6 +43,12 @@ export default {
                 phone: this.phone
             }).then((res) => {
                 console.log(res);
+                layer.open({
+                    content: res.code
+                    ,style: 'font-size: 1.6rem; padding: 1rem'
+                    ,skin: 'msg'
+                    ,time: 3 //2秒后自动关闭
+                });
                 let timer1 = setInterval(() => {
                     this.time --;
                 }, 1000);
@@ -69,7 +75,7 @@ export default {
                 phone: this.phone,
                 colde: this.code,
             }).then((res) => {
-                console.log(res.data.phone);
+                // console.log(res);
                 localStorage.setItem('phone', res.data.phone);
                 this.$router.push(this.urlPath);
             });

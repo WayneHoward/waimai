@@ -32,7 +32,9 @@
     <ul class="shopList">
       <li class="near">附近商家</li>
       <li v-for="(item, index) in shopList" :key="index">
-        <img :src="item.image_path" alt="" />
+        <div class="left">
+          <img :src="item.image_path" alt="" />
+        </div>
         <div>
           <div>
             <span class="brand">品牌</span>
@@ -44,12 +46,13 @@
             </span>
           </div>
           <div class="middle">
-            <span
+            <!-- <span
               class="star-item"
               v-for="(itemClass, index) in stararr"
               :key="index"
               :class="itemClass"
-            ></span>
+            ></span> -->
+            <Star></Star>
             <span class="rating">{{ item.rating }}</span>
             <span class="num">月销{{ item.recent_order_num }}单</span>
             <span class="bird">蜂鸟专送</span>
@@ -66,14 +69,16 @@
 import Header from "./../components/header";
 import Footer from "./../components/footer.vue";
 import axios from "axios";
+import Star from "./../components/star.vue";
 
 // 星星总长度
 const LENGTH = 5;
 
 // 星星的状态
-const CLS_ON = "on"; // 全星
-const CLS_HALF = "half"; // 半星
-const CLS_OFF = "off"; // 剩余未点亮的星星
+// const CLS_ON = "on"; // 全星
+// const CLS_HALF = "half"; // 半星
+// const CLS_OFF = "off"; // 剩余未点亮的星星
+
 
 export default {
   props: {},
@@ -83,6 +88,7 @@ export default {
       foodList: [],
       shopList: [],
       stararr: [],
+      rating:[],
       swiperOptions: {
         pagination: {
           el: ".swiper-pagination",
@@ -109,6 +115,7 @@ export default {
   components: {
     Header,
     Footer,
+    Star,
   },
   mounted() {
     //将url路径存入storage
@@ -138,25 +145,11 @@ export default {
           "http://192.168.31.110:3000/shops?latitude=40.10038&longitude=116.36867"
       ).then((res) => {
           this.shopList = res.data;
-          // console.log(res)
           res.data.forEach((item) => {
-            let result = [];
-            let score = Math.floor(item.rating * 2) / 2;
-            let hasDecimal = score % 1 !== 0;
-            let integer = Math.floor(score);
-            for (let i = 0; i < integer; i++) {
-              result.push(CLS_ON);
-            }
-            // 是否有半个星星
-            if (hasDecimal) {
-              result.push(CLS_HALF);
-            }
-            // 补齐
-            while (result.length < LENGTH) {
-              result.push(CLS_OFF);
-            }
-            return (this.stararr = result);
+            this.rating.push(item.rating);
+            this.$store.starListHome = this.rating;
           });
+          // console.log(this.$store.starListHome)
       })
   },
 };
@@ -174,6 +167,15 @@ export default {
       font-size: 2.5rem;
     }
   }
+  // .swiper-pagination-bullet{
+  //   background: red !important;
+  //   font-size: 1rem !important;
+  // }
+  // .swiper-pagination-bullet-active{
+  //   &:root{
+  //     --swiper-theme-color: red !important;
+  //   }
+  // }
   .foodCategory {
     width: 100%;
     display: flex;
@@ -210,17 +212,22 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 1rem 1rem;
-      img {
-        width: 8rem;
+      .left{
         margin-right: 1rem;
+        width: 8rem;
+        img {
+          width: 100%;
+        }
       }
       div {
         width: 100%;
       }
       .brand {
         font-weight: bold;
-        width: 2rem;
+        padding: 0.1rem;
+        font-size: 1rem;
         background-color: #fcd730;
+        margin-right: 0.5rem;
       }
       .name {
         font-size: 1.4rem;
@@ -230,19 +237,23 @@ export default {
         span {
           border: 1px solid #ccc;
           color: #ccc;
+          font-size: 1.1rem;
         }
       }
       .middle {
         margin: 1rem 0;
         box-sizing: border-box;
+        display: flex;
         img {
           width: 1rem;
           height: 1rem;
         }
+        font-size: 1.2rem;
       }
       .num {
         color: #666;
         margin: 0 0.5rem;
+        flex: 1;
       }
       .rating {
         color: orange;
@@ -251,13 +262,13 @@ export default {
       .bird {
         display: block;
         height: 1.5rem;
-        float: right;
         color: #5fc7a7;
         border: 1px solid #5fc7a7;
         border-radius: 0.2rem;
       }
       .tip {
         color: darkgray;
+        font-size: 1.1rem;
       }
     }
     .star-item {
@@ -270,15 +281,15 @@ export default {
     }
 
     /* 三种图片类型*/
-    .on {
-      background-image: url("../assets/image/star_active.png");
-    }
-    .half {
-      background-image: url("../assets/image/hlaf_star.png");
-    }
-    .off {
-      background-image: url("../assets/image/star_normal.png");
-    }
+    // .on {
+    //   background-image: url("../assets/image/star_active.png");
+    // }
+    // .half {
+    //   background-image: url("../assets/image/half_star.png");
+    // }
+    // .off {
+    //   background-image: url("../assets/image/star_normal.png");
+    // }
   }
 }
 </style>
