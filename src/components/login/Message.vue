@@ -39,8 +39,10 @@ export default {
             this.isShow1 = false;
             this.isShow2 = true;
             this.isReadonly = true;
-            this.axios.get('http://192.168.31.110:3000/sendcode',{
-                phone: this.phone
+            this.axios.get('/api/sendcode', {
+                params: {
+                    phone: this.phone
+                }
             }).then((res) => {
                 console.log(res);
                 layer.open({
@@ -71,11 +73,10 @@ export default {
             }
         },
         login(){
-            this.axios.post('http://192.168.31.110:3000/login_sms',{
+            this.axios.post('/api/login_sms',{
                 phone: this.phone,
-                colde: this.code,
+                code: this.code,
             }).then((res) => {
-                // console.log(res);
                 localStorage.setItem('phone', res.data.phone);
                 this.$router.push(this.urlPath);
             });

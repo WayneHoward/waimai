@@ -47,7 +47,22 @@ const routes = [
       },
       {
         path: 'mark',
-        component: () => import('../components/details/Mark.vue')
+        component: () => import('../components/details/Mark.vue'),
+        children: [
+          {path: '/', redirect: 'all'},
+          {
+            path: 'all',
+            component: () => import('../components/details/ratings/all.vue')
+          },
+          {
+            path: 'satisfaction',
+            component: () => import('../components/details/ratings/satisfaction.vue')
+          },
+          {
+            path: 'dissatisfaction',
+            component: () => import('../components/details/ratings/dissatisfaction.vue')
+          },
+        ]
       },
       {
         path: 'shop',

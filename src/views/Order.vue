@@ -41,6 +41,10 @@ export default {
 </script>
 
 <style scoped lang="less">
+.order{
+    padding-bottom: 5rem;
+    box-sizing: border-box;
+}
 .content{
     margin-top: 13.8rem;
     text-align: center;

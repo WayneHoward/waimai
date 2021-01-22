@@ -33,7 +33,7 @@ export default {
     },
     mounted () {
         this.urlPath = localStorage.getItem('path');
-        this.axios.get('http://192.168.31.110:3000/captcha',{}).then((res) => {
+        this.axios.get('/api/captcha',{}).then((res) => {
             let blob = new Blob([res], {
                 type: 'text/xml'
             });
@@ -52,15 +52,15 @@ export default {
             this.trueOrFalse = 'password';
         },
         login(){
-            // this.axios.post('http://192.168.31.110:3000/login_pwd', {
-            //     name: this.name,
-            //     pwd: this.pwd,
-            //     captcha: this.captcha,
-            // }).then((res) => {
-            //     console.log(res);
-            // });
-            localStorage.setItem('phone', this.name);
-            this.$router.push(this.urlPath);
+            this.axios.post('/api/login_pwd', {
+                name: this.name,
+                pwd: this.pwd,
+                captcha: this.captcha,
+            }).then((res) => {
+                console.log(res);
+                localStorage.setItem('phone', res.data.name);
+                this.$router.push(this.urlPath);
+            });
         }
     },
     components: {

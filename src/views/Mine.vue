@@ -144,6 +144,8 @@ export default {
 
 <style scoped lang="less">
 .mine{
+    padding-bottom: 5rem;
+    box-sizing: border-box;
     .top{
         width: 100%;
         height: 9.9rem;

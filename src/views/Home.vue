@@ -124,19 +124,19 @@ export default {
     }
     //位置
     axios
-      .get("http://192.168.31.110:3000/position/40.10038,116.36867")
+      .get("/api/position/40.10038,116.36867")
       .then((res) => {
         // console.log(res)
         this.address = res.data.name;
       }),
       //食品分类列表
-      axios.get("http://192.168.31.110:3000/index_category").then((res) => {
+      axios.get("/api/index_category").then((res) => {
         // console.log(res)
         this.foodList = res.data;
       }),
       //商家店铺列表
       axios.get(
-          "http://192.168.31.110:3000/shops?latitude=40.10038&longitude=116.36867"
+          "/api/shops?latitude=40.10038&longitude=116.36867"
       ).then((res) => {
           this.shopList = res.data;
           res.data.forEach((item) => {
@@ -152,6 +152,8 @@ export default {
 <style scoped lang="less">
 .home {
   width: 100%;
+  padding-bottom: 5rem;
+  box-sizing: border-box;
   .header{
     .icon-tongxunlu{
       display: inline-block;

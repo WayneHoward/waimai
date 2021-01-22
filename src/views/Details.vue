@@ -53,12 +53,12 @@ export default {
         };
     },
     mounted () {
-        this.axios.get("http://192.168.31.110:3000/shops_details", {
+        this.axios.get("/api/shops_details", {
             params: {
                 id: this.$route.params.id
             }
         }).then((res) => {
-            console.log(res);
+            // console.log(res);
             //背景图片
             this.bgImg = res.data.info.bgImg;
             //头像
@@ -88,7 +88,10 @@ export default {
 
 <style scoped lang="less">
     .details{
+        background: #f3f5f7;
         padding-top: 17rem;
+        height: 100%;
+        padding-bottom: 0 !important;
         .bgImg{
             width: 100%;
             height: 5rem;
@@ -116,6 +119,7 @@ export default {
             border-bottom: 1px solid rgb(217, 217, 217);
             position: fixed;
             top: 5rem;
+            z-index: 99;
             .profilePhoto{
                 display: block;
                 position: absolute;

@@ -47,9 +47,11 @@ export default {
   },
   methods: {
     sub() {
-        this.axios.get(`http://192.168.31.110:3000/search_shops?keyword=${this.shop}&geohash=40.10038,116.36867`, {
-          // geohash: '40.10038,116.36867',
-          // keyword: this.shop,
+        this.axios.get('/api/search_shops', {
+          params:{
+            geohash: '40.10038,116.36867',
+            keyword: this.shop,
+          }
         })
         .then((res) => {
           console.log(res.data);
@@ -75,6 +77,10 @@ export default {
 </script>
 
 <style scoped lang="less">
+.search{
+  padding-bottom: 5rem;
+  box-sizing: border-box;
+}
 .top {
   padding: 1.2rem 0.8rem 1rem 0.8rem;
   display: flex;
