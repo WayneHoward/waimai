@@ -20,6 +20,10 @@ Vue.use(VueAxios, axios)
 // layer
 import './assets/js/layer.mobile-v2.0/layer_mobile/layer'
 import './assets/js/layer.mobile-v2.0/layer_mobile/need/layer.css'
+// vant
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
 
 Vue.config.productionTip = false
 // 添加请求拦截器
